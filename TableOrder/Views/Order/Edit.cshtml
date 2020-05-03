@@ -1,0 +1,76 @@
+﻿@model TableOrder.Models.OrderModel
+@{
+    ViewBag.Title = "Edycja zamówienia";
+}
+<h2>Edytuj zamówienie</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Podaj szczegóły zamówienia</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.OrderID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    List<SelectListItem> dishes = new List<SelectListItem>();
+                    dishes.Add(new SelectListItem() { Text = "Wybierz danie", Value = "", Selected = true , Disabled = true});
+                    dishes.Add(new SelectListItem() { Text = "Pierogi", Value = "Pierogi", Selected = false });
+                    dishes.Add(new SelectListItem() { Text = "Rosół", Value = "Rosół", Selected = false });
+                    dishes.Add(new SelectListItem() { Text = "Kotlet schabowy", Value = "Kotlet schabowy", Selected = false });
+                    dishes.Add(new SelectListItem() { Text = "Frytki", Value = "Frytki", Selected = false });
+                    dishes.Add(new SelectListItem() { Text = "Burger", Value = "Burger", Selected = false });
+                    dishes.Add(new SelectListItem() { Text = "Burger XXL", Value = "Burger XXL", Selected = false });
+                }
+                @Html.DropDownListFor(model => model.Name, dishes)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity)
+                @Html.ValidationMessageFor(model => model.Quantity)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TableName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    List<SelectListItem> tables = new List<SelectListItem>();
+                    tables.Add(new SelectListItem() { Text = "Wybierz stół", Value = "", Selected = true, Disabled = true });
+                    tables.Add(new SelectListItem() { Text = "Stolik pod oknem", Value = "Stolik pod oknem", Selected = false });
+                    tables.Add(new SelectListItem() { Text = "Stolik przy dzwiach", Value = "Stolik przy dzwiach", Selected = false });
+                    tables.Add(new SelectListItem() { Text = "Stolik na piętrze", Value = "Stolik na piętrze", Selected = false });
+                    tables.Add(new SelectListItem() { Text = "Stolik przy barze", Value = "Stolik przy barze", Selected = false });
+                    tables.Add(new SelectListItem() { Text = "Stolik VIP", Value = "Stolik VIP", Selected = false });
+                }
+                @Html.DropDownListFor(model => model.TableName, tables)
+                @Html.ValidationMessageFor(model => model.TableName)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zapisz" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Wróć do listy zamówień", "Index")
+</div>
+<script src="../../Scripts/scripts.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<TableOrder.Models.OrderModel >
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Wybrany stolik:</h2>
+<table class="table">
+    @if (Model.Count() > 0)
+    {
+        <tr>
+            <td colspan="5"><b style="font-size:30px;">@Model.First().TableName</b></td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td colspan="5"><b style="font-size:30px;"> @(Request.Params["table"]) - Brak zamówień</b></td>
+        </tr>
+    }
+    <tr>
+        <td colspan="5"><div class="createOrder">@Html.ActionLink("Dodaj zamówienie dla tego stolika", "Create", new { table = Request.Params["table"] })</div></tdcolspan="5">
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                Cena łącznie
+            </th>
+            <th></th>
+        </tr>
+        foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Price)
+                </td>
+                <td>
+                    @(order.Price * order.Quantity)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj zamówienie", "Edit", new { id = order.OrderID }) |
+                    @Html.ActionLink("Usuń zamówienie", "Delete", new { id = order.OrderID })
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="5" align="right"><b style="font-size:30px;"><a class="button-pay" id="pay" href="#">Zapłać</a></b></td>
+        </tr>
+    }
+</table>
+
+<div id="myModal" class="modal">
+
+
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        @if (Model.Count() > 0) { 
+        <table class="table">
+            <tr>
+                <td colspan="4"><b style="font-size:30px;">Podsumowanie zamówienia dla @Model.First().TableName</b></td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    Cena łącznie
+                </th>
+            </tr>
+            @{
+                var priceCount = 0.0;
+                foreach (var order in Model)
+                {
+                    priceCount += order.Price * order.Quantity;
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => order.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => order.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => order.Price)
+                        </td>
+                        <td>
+                            @(order.Price * order.Quantity)
+                        </td>
+                    </tr>
+                    }
+                }
+            <tr>
+                <td colspan="4" style="font-size:20px">Napiwek 5% <input id="tipBox" type="checkbox" style="width:20px;height:20px"/></td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4"><b style="font-size:20px;">Wartość całego zamówienia: <span id="finalPrice">@priceCount</span></b></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="4"><b style="font-size:30px;"><a class="button-pay" id="buttonPayFinal" href="#">Zapłać</a></b></td>
+            </tr>
+        </table>
+        }
+
+
+    </div>
+
+</div>
+
+<p>
+    @Html.ActionLink("Wróc do listy zamówień", "Index")
+</p>
+<script src="../../Scripts/modal.js"></script>

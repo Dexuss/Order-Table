@@ -1,0 +1,170 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.createOrder a {
+    box-shadow: inset 0px 1px 0px 0px #caefab;
+    background: linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+    background-color: #77d42a;
+    border-radius: 6px;
+    border: 1px solid #268a16;
+    display: inline-block;
+    cursor: pointer;
+    color: #306108;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #aade7c;
+}
+
+    .createOrder a:hover {
+        background: linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+        background-color: #5cb811;
+    }
+
+    .createOrder a:active {
+        position: relative;
+        top: 1px;
+    }
+
+.headerButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#Name,#TableName{
+    height:26px;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+ .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+ .dropdown-content a:hover {
+    background-color: #ddd;
+ }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.button-pay {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 52px;
+    border: 2px solid #30ab19;
+    border-radius: 8px;
+    background: #4eff28;
+    background: -webkit-gradient(linear, left top, left bottom, from(#4eff28), to(#30ab19));
+    background: -moz-linear-gradient(top, #4eff28, #30ab19);
+    background: linear-gradient(to bottom, #4eff28, #30ab19);
+    text-shadow: #227a12 1px 1px 1px;
+    font: normal normal bold 20px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+    .button-pay:hover,
+    .button-pay:focus {
+        border: 2px solid #44f423;
+        background: #5eff30;
+        background: -webkit-gradient(linear, left top, left bottom, from(#5eff30), to(#3acd1e));
+        background: -moz-linear-gradient(top, #5eff30, #3acd1e);
+        background: linear-gradient(to bottom, #5eff30, #3acd1e);
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .button-pay:active {
+        background: #30ab19;
+        background: -webkit-gradient(linear, left top, left bottom, from(#30ab19), to(#30ab19));
+        background: -moz-linear-gradient(top, #30ab19, #30ab19);
+        background: linear-gradient(to bottom, #30ab19, #30ab19);
+    }
+
+
+.modal {
+    /*display: none;*/
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }

@@ -1,0 +1,45 @@
+﻿@model TableOrder.Models.OrderModel
+@{
+    ViewBag.Title = "Usuń zamówienie";
+}
+<h2>Usuń zamówienie</h2>
+<h3>Napewno chcesz usunać zamówienie?</h3>
+<div>
+    <h4>Szczegóły zamówienia:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TableName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TableName)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-danger" /> |
+            @Html.ActionLink("Wróc to listy zamówień", "Index")
+        </div>
+    }
+</div>

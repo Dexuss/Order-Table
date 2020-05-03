@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TableOrder.Models.OrderModel >
+@{
+    ViewBag.Title = "Obsługa zamówień";
+}
+<h2>Zamówienia</h2>
+<div class="headerButtons">
+    <div class="chooseTable">
+        <div class="dropdown">
+            <button class="dropbtn" style="border-radius: 10px;">Wybierz stolik ↓</button>
+            <div class="dropdown-content">
+                @Html.ActionLink("Stolik pod oknem", "Details", new { table = "Stolik pod oknem" })
+                @Html.ActionLink("Stolik przy dzwiach", "Details", new { table = "Stolik przy dzwiach" })
+                @Html.ActionLink("Stolik na piętrze", "Details", new { table = "Stolik na piętrze" })
+                @Html.ActionLink("Stolik przy barze", "Details", new { table = "Stolik przy barze" })
+                @Html.ActionLink("Stolik VIP", "Details", new { table = "Stolik VIP" })
+            </div>
+        </div>
+    </div>
+    <div class="createOrder">@Html.ActionLink("Dodaj zamówienie", "Create")</div>
+</div>
+<table class="table">
+    @foreach (var item in Model.GroupBy(model => model.TableName))
+    {
+        var totalPrice = 0.0;
+        <tr>
+            <td colspan="6"><b style="font-size:30px;">@item.First().TableName</b></td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                Cena łącznie
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TableName)
+            </th>
+            <th></th>
+        </tr>
+        foreach (var order in item)
+        {
+            totalPrice += order.Price * order.Quantity;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Price)
+                </td>
+                <td>
+                    @(order.Price * order.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.TableName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj zamówienie", "Edit", new { id = order.OrderID }) |
+                    @Html.ActionLink("Usuń zamówienie", "Delete", new { id = order.OrderID })
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="6" align="right"><b style="font-size:20px;text-align:right;">Cena całościowa: @(totalPrice)</b></td>
+        </tr>
+    }
+</table>
