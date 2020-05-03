@@ -12,53 +12,51 @@ namespace TableOrder.Repository
         static OrderList()
         {
             orderList = new List<OrderModel>(){
-            new OrderModel()
-            {
-                OrderID = Guid.NewGuid(),
-                Name = "Pierogi",
-                Quantity = 2,
-                Price = 12.0,
-                TableName = "Stolik pod oknem"
-            },
-             new OrderModel()
-            {
-                OrderID = Guid.NewGuid(),
-                Name = "Pierogi",
-                Quantity = 3,
-                Price = 12.0,
-                TableName = "Stolik VIP"
-            },
-            new OrderModel()
-            {
-                OrderID = Guid.NewGuid(),
-                Name = "Kotlet schabowy",
-                Quantity = 1,
-                Price = 23.0,
-                TableName = "Stolik VIP"
-            },
-            new OrderModel()
-            {
-                OrderID = Guid.NewGuid(),
-                Name = "Burger XXL",
-                Quantity = 5,
-                Price = 27.0,
-                TableName = "Stolik VIP"
-            },
-            new OrderModel()
-            {
-                OrderID = Guid.NewGuid(),
-                Name = "Kotlet schabowy",
-                Quantity = 4,
-                Price = 23.0,
-                TableName = "Stolik na piętrze"
-            },
+                new OrderModel()
+                {
+                    OrderID = Guid.NewGuid(),
+                    Name = "Pierogi",
+                    Quantity = 2,
+                    Price = 12.0,
+                    TableName = "Stolik pod oknem"
+                },
+                 new OrderModel()
+                {
+                    OrderID = Guid.NewGuid(),
+                    Name = "Pierogi",
+                    Quantity = 3,
+                    Price = 12.0,
+                    TableName = "Stolik VIP"
+                },
+                new OrderModel()
+                {
+                    OrderID = Guid.NewGuid(),
+                    Name = "Kotlet schabowy",
+                    Quantity = 1,
+                    Price = 23.0,
+                    TableName = "Stolik VIP"
+                },
+                new OrderModel()
+                {
+                    OrderID = Guid.NewGuid(),
+                    Name = "Burger XXL",
+                    Quantity = 5,
+                    Price = 27.0,
+                    TableName = "Stolik VIP"
+                },
+                new OrderModel()
+                {
+                    OrderID = Guid.NewGuid(),
+                    Name = "Kotlet schabowy",
+                    Quantity = 4,
+                    Price = 23.0,
+                    TableName = "Stolik na piętrze"
+                }
             };
         }
 
-        public static List<OrderModel> SelectOrderList()
-        {
-            return orderList;
-        }
+        public static List<OrderModel> SelectOrderList() =>
+            orderList;
 
         public static void InsertOrderList(OrderModel ord)
         {

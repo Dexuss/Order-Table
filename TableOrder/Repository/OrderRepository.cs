@@ -3,39 +3,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using TableOrder.Models;
 
 namespace TableOrder.Repository
 {
-    public class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
-        public List<Models.OrderModel> SelectAllOrders()
-        {
-            return OrderList.SelectOrderList();
-        }
+        public List<OrderModel> SelectAllOrders() =>
+            OrderList.SelectOrderList();
 
-        public Models.OrderModel SelectOrderById(Guid id)
-        {
-            return OrderList.SelectOrderList().Find(x => x.OrderID == id);
-        }
+        public OrderModel SelectOrderById(Guid id) =>
+            OrderList.SelectOrderList().Find(x => x.OrderID == id);
 
-        public IEnumerable<Models.OrderModel> SelectOrderByTableName(string table)
-        {
-            return OrderList.SelectOrderList().Where(x => x.TableName == table);
-        }
+        public IEnumerable<OrderModel> SelectOrderByTableName(string table) =>
+            OrderList.SelectOrderList().Where(x => x.TableName == table);
 
-        public void InsertOrder(Models.OrderModel ord)
-        {
+        public void InsertOrder(OrderModel ord) =>
             OrderList.InsertOrderList(ord);
-        }
 
-        public void UpdateOrder(Models.OrderModel ord)
-        {
+        public void UpdateOrder(OrderModel ord) =>
             OrderList.UpdateOrderList(ord);
-        }
 
-        public void DeleteOrder(Guid id)
-        {
+        public void DeleteOrder(Guid id) =>
             OrderList.DeleteOrderList(id);
-        }
     }
 }
